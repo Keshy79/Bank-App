@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./form.css">
+</head>
+<body>
+    <div class="form mx-auto my-5 ">
+        <p class="title">Register </p>
+        <p class="message">Sign-in into your Account and get started </p>
+
+        <label>
+            <input id="email" class="input" type="email" placeholder="" required="">
+            <span>Email</span>
+        </label>
+
+        <label>
+            <input id="password" class="input" type="password" placeholder="" required="">
+            <span>Password</span>
+        </label>
+        <button onclick="signin()" class="submit">Submit</button>
+        <!-- <p class="signin">Already have an acount ? <a href="#">Signin</a> </p> -->
+    </div>
+    <script>
+        const signin = () => {
+            let getuser = JSON.parse(localStorage.getItem("bankuser"));
+            console.log(getuser);
+            getuser.map((userDetails) =>{
+                if(getuser.email == email && getuser.password == password)
+                localStorage.setItem("userlogin", JSON.stringify(getuser));
+                {
+                    alert("Login Successfully");
+                    window.location.href = "./dashboard.html";
+                }
+
+            })
+           
+        }
+    </script>
+</body>
+</html>
