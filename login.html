@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./form.css">
+    <link href=" https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="form mx-auto my-5 ">
+        <p class="title">Register </p>
+        <p class="message">Sign-in into your Account and get started </p>
+
+        <label>
+            <input id="email" class="input" type="email" placeholder="" required="">
+            <span>Email</span>
+        </label>
+
+        <label>
+            <input id="password" class="input" type="password" placeholder="" required="">
+            <span>Password</span>
+        </label>
+        <button onclick="signin()" class="submit">Submit</button>
+        <!-- <p class="signin">Already have an acount ? <a href="#">Signin</a> </p> -->
+    </div>
+    <script src="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+    "></script>
+    <script>
+      const signin = () => {
+    let getuser = JSON.parse(localStorage.getItem("bankuser"));
+    console.log(getuser);
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    let userFound = false;
+
+    getuser.forEach((userDetails) => {
+        if (userDetails.email === email && userDetails.password === password) {
+            Swal.fire({
+                title: "Good job!",
+                text: "Login Successful!",
+                icon: "success"
+            });
+            localStorage.setItem("userlogin", JSON.stringify(userDetails));
+            userFound = true;
+            setTimeout(() => {
+                window.location.href = "./dashboard.html";
+            }, 7000);
+        }
+    });
+
+    if (!userFound) {
+        Swal.fire({
+            title: "Oops...",
+            text: "Invalid Credentials!",
+            icon: "error",
+            confirmButtonText: "Try Again"
+        });
+    }
+}
+
+    </script>
+</body>
+
+</html>
